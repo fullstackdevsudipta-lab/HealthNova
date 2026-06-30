@@ -1,0 +1,811 @@
+.fitness-page {
+    --fit-bg-base: #f7faf9;
+    --fit-bg-surface: #ffffff;
+    --fit-bg-card: #ffffff;
+    --fit-bg-card-hover: #eef7f5;
+    --fit-bg-input: #f1f6f5;
+
+    --fit-border: rgba(15, 35, 32, 0.07);
+    --fit-border-hover: rgba(79, 163, 148, 0.35);
+    --fit-border-input: rgba(15, 35, 32, 0.1);
+
+    --fit-accent-teal: #4fa394;
+    --fit-accent-green: #48bb78;
+    --fit-accent-blue: #4a8fc9;
+    --fit-accent-amber: #e08a4f;
+    --fit-accent-rose: #d1607e;
+
+    --fit-text-primary: #1e2e2a;
+    --fit-text-secondary: #6b8a82;
+    --fit-text-muted: #a0b5ae;
+
+    --fit-glow-teal: 0 0 24px rgba(79, 163, 148, 0.12);
+    --fit-glow-card: 0 4px 18px rgba(15, 35, 32, 0.06);
+
+    --fit-radius-card: 18px;
+    --fit-radius-sm: 10px;
+    --fit-transition: 0.28s cubic-bezier(0.34, 1.2, 0.64, 1);
+
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--fit-bg-base);
+    color: var(--fit-text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.fitness-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(79, 163, 148, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 163, 148, 0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fitness-page::after {
+    content: '';
+    position: fixed;
+    top: -15%;
+    right: -10%;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(ellipse at center,
+            rgba(79, 163, 148, 0.10) 0%,
+            rgba(74, 143, 201, 0.06) 40%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fitness-page header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    border-bottom: 1px solid var(--fit-border);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.fitness-page header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--fit-accent-teal) 0%, var(--fit-accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-left: 20px;
+}
+
+.fitness-page header::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fit-accent-teal);
+    box-shadow: 0 0 10px rgba(79, 163, 148, 0.4);
+    animation: fit-pulse-dot 2.4s ease-in-out infinite;
+    position: absolute;
+    left: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes fit-pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: translateY(-50%) scale(0.7);
+    }
+}
+
+.fitness-page .back-btn {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--fit-text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-sm);
+    background: rgba(15, 35, 32, 0.02);
+    transition: all 0.22s ease;
+}
+
+.fitness-page .back-btn:hover {
+    border-color: var(--fit-accent-teal);
+    color: var(--fit-accent-teal);
+    background: rgba(79, 163, 148, 0.08);
+}
+
+.fitness-page main {
+    position: relative;
+    z-index: 1;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.fitness-page .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px 26px 24px;
+    background: var(--fit-bg-card);
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-card);
+    box-shadow: var(--fit-glow-card);
+    overflow: hidden;
+    animation: fit-card-in 0.5s ease both;
+    transition: transform var(--fit-transition), border-color var(--fit-transition),
+        background var(--fit-transition), box-shadow var(--fit-transition);
+}
+
+.fitness-page .card:nth-child(2) {
+    animation-delay: 0.05s;
+}
+
+.fitness-page .card:nth-child(3) {
+    animation-delay: 0.10s;
+}
+
+.fitness-page .card:nth-child(4) {
+    animation-delay: 0.15s;
+}
+
+.fitness-page .card:nth-child(5) {
+    animation-delay: 0.20s;
+}
+
+.fitness-page .card:nth-child(6) {
+    animation-delay: 0.25s;
+}
+
+.fitness-page .card:nth-child(7) {
+    animation-delay: 0.30s;
+}
+
+.fitness-page .card:nth-child(8) {
+    animation-delay: 0.35s;
+}
+
+.fitness-page .card:nth-child(9) {
+    animation-delay: 0.40s;
+}
+
+.fitness-page .card:nth-child(10) {
+    animation-delay: 0.45s;
+}
+
+@keyframes fit-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fitness-page .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg,
+            transparent 35%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 65%);
+    transform: translateX(-100%);
+    transition: transform 0.55s ease;
+    pointer-events: none;
+}
+
+.fitness-page .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(90deg, var(--fit-accent-teal), var(--fit-accent-blue));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fitness-page .card:hover {
+    transform: translateY(-4px);
+    background: var(--fit-bg-card-hover);
+    border-color: var(--fit-border-hover);
+    box-shadow: var(--fit-glow-card), var(--fit-glow-teal);
+}
+
+.fitness-page .card:hover::before {
+    transform: translateX(100%);
+}
+
+.fitness-page .card:hover::after {
+    transform: scaleX(1);
+}
+
+.fitness-page .card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--fit-text-primary);
+}
+
+.fitness-page .card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--fit-text-primary);
+    margin-bottom: 4px;
+}
+
+.fitness-page .card>p {
+    font-size: 0.84rem;
+    font-weight: 300;
+    color: var(--fit-text-secondary);
+    line-height: 1.6;
+}
+
+.fitness-page .goal-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fitness-page .goal-tab {
+    flex: 1 1 auto;
+    padding: 10px 16px;
+    border-radius: var(--fit-radius-sm);
+    border: 1px solid var(--fit-border-input);
+    background: var(--fit-bg-input);
+    color: var(--fit-text-secondary);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.22s ease;
+    user-select: none;
+}
+
+.fitness-page .goal-tab:hover {
+    border-color: var(--fit-accent-teal);
+    color: var(--fit-accent-teal);
+    background: rgba(79, 163, 148, 0.07);
+}
+
+.fitness-page .goal-tab.active {
+    background: linear-gradient(135deg, rgba(79, 163, 148, 0.16), rgba(74, 143, 201, 0.12));
+    border-color: var(--fit-accent-teal);
+    color: var(--fit-accent-teal);
+    box-shadow: 0 0 14px rgba(79, 163, 148, 0.12);
+}
+
+.fitness-page .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.fitness-page .input-box {
+    flex: 1 1 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fitness-page .input-box label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fit-text-muted);
+}
+
+.fitness-page .input-box input,
+.fitness-page .input-box select {
+    background: var(--fit-bg-input);
+    border: 1px solid var(--fit-border-input);
+    border-radius: var(--fit-radius-sm);
+    color: var(--fit-text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.fitness-page .input-box input::placeholder {
+    color: var(--fit-text-muted);
+}
+
+.fitness-page .input-box input:focus,
+.fitness-page .input-box select:focus {
+    border-color: var(--fit-accent-teal);
+    box-shadow: 0 0 0 3px rgba(79, 163, 148, 0.13);
+}
+
+.fitness-page .input-box select option {
+    background: #ffffff;
+    color: var(--fit-text-primary);
+}
+
+.fitness-page button {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--fit-radius-sm);
+    cursor: pointer;
+    transition: all 0.22s ease;
+    background: linear-gradient(135deg, var(--fit-accent-teal), var(--fit-accent-blue));
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(79, 163, 148, 0.2);
+    width: 100%;
+    margin-top: 4px;
+}
+
+.fitness-page button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(79, 163, 148, 0.32);
+}
+
+.fitness-page button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.fitness-page .btn-danger {
+    background: rgba(224, 98, 90, 0.1);
+    color: #c45850;
+    border: 1px solid rgba(224, 98, 90, 0.25);
+    box-shadow: none;
+}
+
+.fitness-page .btn-danger:hover {
+    background: rgba(224, 98, 90, 0.18);
+    border-color: rgba(224, 98, 90, 0.45);
+    box-shadow: none;
+}
+
+.fitness-page .btn-ai {
+    background: linear-gradient(135deg, #f3eefb, #e8f0f5);
+    color: #7c4ee0;
+    border: 1px solid rgba(124, 78, 224, 0.25);
+    box-shadow: 0 4px 16px rgba(124, 78, 224, 0.08);
+}
+
+.fitness-page .btn-ai:hover {
+    border-color: rgba(124, 78, 224, 0.5);
+    box-shadow: 0 6px 22px rgba(124, 78, 224, 0.15);
+}
+
+.fitness-page .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.fitness-page .stat-box {
+    min-width: 200px;
+    background: var(--fit-bg-input);
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-sm);
+    padding: 18px 14px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.fitness-page .stat-box:hover {
+    border-color: var(--fit-accent-teal);
+    background: rgba(79, 163, 148, 0.06);
+}
+
+.fitness-page .stat-box .val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--fit-accent-teal);
+}
+
+.fitness-page .stat-box .lbl {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fit-text-muted);
+    margin-top: 4px;
+}
+
+.fitness-page .hr-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fitness-page .hr-zone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--fit-radius-sm);
+    transition: transform 0.2s ease;
+}
+
+.fitness-page .hr-zone:hover {
+    transform: translateX(4px);
+}
+
+.fitness-page .zone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.fitness-page .zone-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    flex: 1;
+}
+
+.fitness-page .zone-range {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+#weekly-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fitness-page .plan-day {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--fit-bg-input);
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-sm);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.fitness-page .plan-day:hover {
+    background: rgba(79, 163, 148, 0.08);
+    border-color: rgba(79, 163, 148, 0.25);
+    transform: translateX(4px);
+}
+
+.fitness-page .plan-day-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fit-accent-teal);
+    min-width: 90px;
+}
+
+.fitness-page .plan-day-detail {
+    font-size: 0.85rem;
+    color: var(--fit-text-secondary);
+    flex: 1;
+    line-height: 1.4;
+}
+
+.fitness-page .difficulty-badge {
+    font-size: 0.68rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+.fitness-page .d-easy {
+    background: rgba(72, 187, 120, 0.14);
+    color: #2f855a;
+    border: 1px solid rgba(72, 187, 120, 0.3);
+}
+
+.fitness-page .d-medium {
+    background: rgba(224, 138, 79, 0.16);
+    color: #b5631f;
+    border: 1px solid rgba(224, 138, 79, 0.3);
+}
+
+.fitness-page .d-hard {
+    background: rgba(209, 96, 126, 0.16);
+    color: #a8425f;
+    border: 1px solid rgba(209, 96, 126, 0.3);
+}
+
+.fitness-page .d-rest {
+    background: rgba(160, 174, 192, 0.14);
+    color: #5e6c7d;
+    border: 1px solid rgba(160, 174, 192, 0.28);
+}
+
+#log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.fitness-page .log-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--fit-bg-input);
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-sm);
+    font-size: 0.85rem;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.fitness-page .log-item:hover {
+    background: rgba(79, 163, 148, 0.06);
+    border-color: rgba(79, 163, 148, 0.22);
+}
+
+.fitness-page .log-tag {
+    background: rgba(79, 163, 148, 0.12);
+    color: var(--fit-accent-teal);
+    border: 1px solid rgba(79, 163, 148, 0.25);
+    font-size: 0.72rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+}
+
+.fitness-page .charts-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.fitness-page .chart-card {
+    background: var(--fit-bg-card);
+    border: 1px solid var(--fit-border);
+    border-radius: var(--fit-radius-card);
+    padding: 22px 20px;
+    box-shadow: var(--fit-glow-card);
+    transition: transform var(--fit-transition), border-color var(--fit-transition),
+        box-shadow var(--fit-transition);
+}
+
+.fitness-page .chart-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--fit-border-hover);
+    box-shadow: var(--fit-glow-card), var(--fit-glow-teal);
+}
+
+.fitness-page .chart-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--fit-text-primary);
+    margin-bottom: 14px;
+}
+
+.fitness-page .chart-mini {
+    position: relative;
+    height: 200px;
+}
+
+.fitness-page .chart-container {
+    position: relative;
+    height: 240px;
+}
+
+.fitness-page .table-scroll {
+    overflow-x: auto;
+    border-radius: var(--fit-radius-sm);
+    border: 1px solid var(--fit-border);
+}
+
+.fitness-page #exercise-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+}
+
+.fitness-page #exercise-table thead tr {
+    background: rgba(79, 163, 148, 0.08);
+    border-bottom: 1px solid var(--fit-border);
+}
+
+.fitness-page #exercise-table th {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fit-text-muted);
+    padding: 12px 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.fitness-page #exercise-table td {
+    padding: 11px 14px;
+    color: var(--fit-text-secondary);
+    border-bottom: 1px solid rgba(15, 35, 32, 0.04);
+}
+
+.fitness-page #exercise-table td strong {
+    color: var(--fit-text-primary);
+    font-weight: 500;
+}
+
+.fitness-page #exercise-table tbody tr {
+    transition: background 0.18s;
+}
+
+.fitness-page #exercise-table tbody tr:hover {
+    background: rgba(79, 163, 148, 0.05);
+}
+
+.fitness-page #exercise-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.fitness-page .water-bubbles {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.fitness-page .bubble {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--fit-border-input);
+    background: var(--fit-bg-input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    filter: grayscale(1);
+    opacity: 0.4;
+}
+
+.fitness-page .bubble:hover {
+    transform: scale(1.12);
+    border-color: var(--fit-accent-blue);
+    opacity: 0.75;
+}
+
+.fitness-page .bubble.filled {
+    filter: grayscale(0);
+    opacity: 1;
+    border-color: var(--fit-accent-blue);
+    background: rgba(74, 143, 201, 0.14);
+    box-shadow: 0 0 12px rgba(74, 143, 201, 0.2);
+    transform: scale(1.05);
+}
+
+.fitness-page .progress-bar-wrap {
+    width: 100%;
+    height: 8px;
+    background: rgba(15, 35, 32, 0.07);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.fitness-page .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fit-accent-blue), var(--fit-accent-teal));
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+#ai-report-box {
+    background: rgba(124, 78, 224, 0.07);
+    border: 1px solid rgba(124, 78, 224, 0.18);
+    border-radius: var(--fit-radius-sm);
+    padding: 16px;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--fit-text-secondary);
+}
+
+@media (max-width: 768px) {
+    .fitness-page header {
+        padding: 20px 24px;
+    }
+
+    .fitness-page header::before {
+        left: 20px;
+    }
+
+    .fitness-page main {
+        padding: 24px 16px 48px;
+        gap: 16px;
+    }
+
+    .fitness-page .card {
+        padding: 22px 18px;
+    }
+
+    .fitness-page .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    .fitness-page .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .fitness-page .plan-day {
+        flex-wrap: wrap;
+    }
+
+    .fitness-page .plan-day-name {
+        min-width: auto;
+    }
+
+    .fitness-page .bubble {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fitness-page .goal-tabs {
+        flex-direction: column;
+    }
+
+    .fitness-page .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
